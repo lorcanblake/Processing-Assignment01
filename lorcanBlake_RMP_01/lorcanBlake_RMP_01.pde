@@ -11,7 +11,7 @@ void setup(){
   fullScreen();
   colorMode(RGB);
   // 20 arrays created
-  for(int i = 0; i < amt; i++){
+  for(int i = 0; i < circleContainer.length; i++){
     
     float[] circle = new float[3];
     
