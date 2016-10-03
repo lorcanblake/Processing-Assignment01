@@ -1,13 +1,8 @@
-// making 30 circles
-int amt = 30;
+// amount of circles - in this case 20
+int amt = 20;
 
-// arrays to store circle info
-int[] allCircles = new int[amt];
-
-int[] xPos = new int[amt];
-int[] yPos = new int[amt];
-int[] wh = new int[amt];
-
+// 2d arrays with 20 rows to store circle info
+float[][] circleContainer = new float[amt][];
 
 color[] c = new color[amt];
 
@@ -15,22 +10,24 @@ color[] c = new color[amt];
 void setup(){
   fullScreen();
   colorMode(RGB);
-  
+  // 20 arrays created
   for(int i = 0; i < amt; i++){
-    xPos[i] = int(random(width));
-    yPos[i] = int(random(height));
-    wh[i] = int(random(10, 50)); //restrict to between 10 to 50
-    c[i] = color(int(random(200)), int(random(200)), int(random(200)));
     
-    allCircles[0] = xPos[i];
-    allCircles[1] = yPos[i];
-    allCircles[2] = wh[i];
+    float[] circle = new float[3];
+    
+   circle[0] = random(width);
+   circle[1] = random(height);
+   circle[2] = random(10,50); //restrict to between 10 to 50
+   
+   circleContainer[i] = circle; // put the wh and radius values into 2d array for keyboard manipulation
+   
+    c[i] = color(int(random(255)), int(random(255)), int(random(255))); // generate random colour values
   }
 }
 
 void draw(){
-  for(int i = 0; i < amt; i++){
+  for(int i = 0; i < circleContainer.length; i++){
     fill(c[i]);
-    ellipse(xPos[i], yPos[i], wh[i], wh[i]);
+    ellipse(circleContainer[i][0], circleContainer[i][1], circleContainer[i][2], circleContainer[i][2]); 
   }
 }
