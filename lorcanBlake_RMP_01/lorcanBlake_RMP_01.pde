@@ -7,7 +7,14 @@ float moveAmount = .2;
 float[][] circleContainer = new float[amt][];
 color[] c = new color[amt];
 
+// add face instance
+Face myF;
+// face x and y values to be passed to paint function
+int fX;
+int fY;
+
 void setup(){
+  
   fullScreen();
   // 20 arrays created
   for(int i = 0; i < circleContainer.length; i++){
@@ -22,9 +29,12 @@ void setup(){
    
     c[i] = color(int(random(255)), int(random(255)), int(random(255))); // generate random colour values
   }
+  
+  myF = new Face();
 }
 
 void draw(){
+  fill(color(int(235), int((243)), int((247))));
   rect(0,0,width,height); // rectangle to cover bg
   
   for(int z = 0; z < circleContainer.length; z++){
@@ -51,4 +61,9 @@ void draw(){
    }
    
   }
+  
+  myF.paint(fX,fY);
+  // assign mouse values to face
+  fX = mouseX;
+  fY = mouseY;
 }
