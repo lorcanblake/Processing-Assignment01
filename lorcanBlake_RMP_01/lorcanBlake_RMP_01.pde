@@ -1,3 +1,6 @@
+import processing.sound.*;
+WhiteNoise noise;
+
 // amount of circles - in this case 20
 int amt = 20;
 // increment for keyboard input
@@ -31,6 +34,10 @@ void setup(){
   }
   
   myF = new Face();
+  
+  // Create the noise generator
+  noise = new WhiteNoise(this);
+  noise.play();
 }
 
 void draw(){
@@ -41,23 +48,44 @@ void draw(){
     fill(c[z]);
     ellipse(circleContainer[z][0], circleContainer[z][1], circleContainer[z][2], circleContainer[z][2]);
     noStroke();
-  
+    
    //in this case 0 = x axis of the array circle
   if(keyCode == LEFT && keyPressed == true){
      circleContainer[z][0] -= (moveAmount)*(random(255)); //  multiply by random values to give nice parallax effect
+     
+     //loop
+     if(circleContainer[z][0] < 0){
+      circleContainer[z][0] += width + circleContainer[z][2]; 
+     }
    }
    
    if(keyCode == RIGHT && keyPressed == true){
-     circleContainer[z][0] += (moveAmount)*(random(255));
+     circleContainer[z][0] += (moveAmount)*(random(255)); //  multiply by random values to give nice parallax effect
+     
+     //loop
+     if(circleContainer[z][0] > width){
+      circleContainer[z][0] = 0-circleContainer[z][2]; 
+     }
+ 
    }
    
    //in this case 0 = y axis of the array circle
    if(keyCode == UP && keyPressed == true){
-     circleContainer[z][1] -= (moveAmount)*(random(255));
+     circleContainer[z][1] -= (moveAmount)*(random(255)); //  multiply by random values to give nice parallax effect
+     
+     //loop
+      if(circleContainer[z][1] < 0){
+      circleContainer[z][1] = height+circleContainer[z][2]; 
+     }
    }
    
    if(keyCode == DOWN && keyPressed == true){
-     circleContainer[z][1] += (moveAmount)*(random(255));
+     circleContainer[z][1] += (moveAmount)*(random(255)); //  multiply by random values to give nice parallax effect
+     
+     //loop
+      if(circleContainer[z][1] > height){
+      circleContainer[z][1] = 0+circleContainer[z][2]; 
+     }
    }
    
   }
